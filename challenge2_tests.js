@@ -8,3 +8,4 @@ describe('Challenge 2 - Test Class', function () {
       expect(results.length).toEqual(4);
       expect(results.filter(x => x.type.toLowerCase() !== "dog").length).toEqual(0);
   });
+});
