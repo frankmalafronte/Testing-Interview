@@ -6,6 +6,6 @@ describe('Challenge 2 - Test Class', function () {
       let results = service.fetchDogs();
 
       expect(results.length).toEqual(4);
-      expect(results.filter(x => x.type !== "dog").length).toEqual(0);
+      expect(results.filter(x => x.type.toLowerCase() !== "dog").length).toEqual(0);
   });
 });

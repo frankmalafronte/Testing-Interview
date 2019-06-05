@@ -5,9 +5,9 @@ const CAT_FILTER_CONSTANT = "CAT";
 class FakeDatabase {
     constructor() {
         this.data = [
-            { name: "Lancelot", type: "Dog", age: 10, breed: "German Shepherd" },
+            { name: "Lancelot", type: "dog", age: 10, breed: "German Shepherd" },
             { name: "Matilda", type: "Dog", age: 9, breed: "German Shepherd" },
-            { name: "Zeus", type: "Dog", age: 4, breed: "Leonberger" },
+            { name: "Zeus", type: "DOG", age: 4, breed: "Leonberger" },
             { name: "Norah", type: "Dog", age: 7, breed: "Mixed" },
             { name: "Tobias", type: "Cat", age: 6, breed: "Tabby" },
         ];
