@@ -30,5 +30,46 @@ pnl =  70 + 21 = 91
 */
 
 function calculatePnl(orders, currentPrice) {
-    
+    let realizedPnl = 0
+    let unrealizedPnl = 0
+    let position = []
+    const deepCloneNestedArray = (items) => items.map(item => Array.isArray(item) ? deepCloneNestedArray(item) : item);
+    let sanitizedOrders = deepCloneNestedArray(orders)
+
+
+for (let order of sanitizedOrders){
+    let quantity = order[0]
+    let price = order[1]
+    if(quantity > 0){
+        position.push(order)
+    } else {
+       completeSellOrder(quantity,price)
+        }
+    }
+
+for(let order of position){
+  let quantity = order[0]
+  let price = order[1]
+  if(quantity>0){
+    unrealizedPnl = unrealizedPnl + quantity*(currentPrice-price)
+  }
+}
+
+    function completeSellOrder(quantity,salePrice){
+      let sharesToSell = quantity
+        while(sharesToSell < 0){
+            let currentOrder = position.shift()
+            if(-sharesToSell > currentOrder[0]){
+            sharesToSell = sharesToSell + currentOrder[0]
+            realizedPnl = realizedPnl + currentOrder[0] * (salePrice - currentOrder[1])
+            } else{
+              realizedPnl = realizedPnl + -sharesToSell *(salePrice - currentOrder[1])
+              sharesToSell = sharesToSell + currentOrder[0]
+              currentOrder[0] = sharesToSell
+              position.unshift(currentOrder)
+
+            }
+        }
+    }
+return realizedPnl + unrealizedPnl
 }
